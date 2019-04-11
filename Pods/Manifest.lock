@@ -1,0 +1,22 @@
+PODS:
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - IQKeyboardManager (6.2.0)
+
+DEPENDENCIES:
+  - FMDB
+  - IQKeyboardManager
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FMDB
+    - IQKeyboardManager
+
+SPEC CHECKSUMS:
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+
+PODFILE CHECKSUM: 1e6821ddaba62f1910d13144307748f0802effd1
+
+COCOAPODS: 1.6.1
