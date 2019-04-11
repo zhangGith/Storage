@@ -52,7 +52,7 @@
                   moduleName = "StorageOCDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/block/Desktop/zhang/StorageOCDemo/StorageOCDemo/FMDBManager.m"
-                  timestampString = "576645895.33331"
+                  timestampString = "576661839.2653019"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -67,7 +67,7 @@
                   moduleName = "StorageOCDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/block/Desktop/zhang/StorageOCDemo/StorageOCDemo/FMDBManager.m"
-                  timestampString = "576645895.344323"
+                  timestampString = "576661839.277791"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "75"
@@ -82,7 +82,7 @@
                   moduleName = "StorageOCDemo"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/block/Desktop/zhang/StorageOCDemo/StorageOCDemo/FMDBManager.m"
-                  timestampString = "576645895.357095"
+                  timestampString = "576661839.29536"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -105,6 +105,22 @@
             startingLineNumber = "153"
             endingLineNumber = "153"
             landmarkName = "+quaryDataWithCompletion:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "StorageOCDemo/CoreDataViewController.m"
+            timestampString = "576661838.9294651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "-controller:sectionIndexTitleForSectionName:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -84,6 +84,7 @@
 		F93FEB6A225DCE400028E670 /* CoreDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataViewController.h; sourceTree = "<group>"; };
 		F93FEB6B225DCE400028E670 /* CoreDataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataViewController.m; sourceTree = "<group>"; };
 		F93FEB6D225DEC370028E670 /* Student 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Student 2.xcdatamodel"; sourceTree = "<group>"; };
+		F957D3CD225F280F00A58511 /* Student 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Student 3.xcdatamodel"; sourceTree = "<group>"; };
 		F9F3E7CE225C4ECB00D45FDB /* DBSqlite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBSqlite.h; sourceTree = "<group>"; };
 		F9F3E7CF225C4ECB00D45FDB /* DBSqlite.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DBSqlite.m; sourceTree = "<group>"; };
 		F9F3E7D1225C7A1F00D45FDB /* SqliteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SqliteViewController.h; sourceTree = "<group>"; };
@@ -714,10 +715,11 @@
 		F93FEB67225DCAB70028E670 /* Student.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F957D3CD225F280F00A58511 /* Student 3.xcdatamodel */,
 				F93FEB6D225DEC370028E670 /* Student 2.xcdatamodel */,
 				F93FEB68225DCAB70028E670 /* Student.xcdatamodel */,
 			);
-			currentVersion = F93FEB6D225DEC370028E670 /* Student 2.xcdatamodel */;
+			currentVersion = F957D3CD225F280F00A58511 /* Student 3.xcdatamodel */;
 			path = Student.xcdatamodeld;
 			sourceTree = "<group>";
 			usesTabs = 0;

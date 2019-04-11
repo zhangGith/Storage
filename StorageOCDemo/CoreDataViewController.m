@@ -11,13 +11,15 @@
 #import "MyStudent+CoreDataClass.h"
 #import "MyClass+CoreDataClass.h"
 
-@interface CoreDataViewController ()
+@interface CoreDataViewController ()<NSFetchedResultsControllerDelegate>
 
 @end
 
 @implementation CoreDataViewController
 
 static NSManagedObjectContext *context = nil;
+
+static NSFetchedResultsController *fetchResultsController = nil;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -26,13 +28,18 @@ static NSManagedObjectContext *context = nil;
     NSString *docs = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     NSURL *url = [NSURL fileURLWithPath:[docs stringByAppendingPathComponent:@"myCore.sqlite"]];
     
+    // 设置版本迁移方案
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption : @YES,
+                              NSInferMappingModelAutomaticallyOption : @YES};
+    
+    
     NSURL *modelPath = [[NSBundle mainBundle] URLForResource:@"Student" withExtension:@"momd"];
     NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelPath];
     NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
     
     
     NSError *error = nil;
-    NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error];
+    NSPersistentStore *store = [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];
     if (store == nil) {
         [NSException raise:@"添加数据库错误" format:@"%@", error.localizedDescription];
     }
@@ -40,13 +47,19 @@ static NSManagedObjectContext *context = nil;
     context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     context.persistentStoreCoordinator = psc;
     
-   
-    
     UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"delete" style:UIBarButtonItemStyleDone target:self action:@selector(deleteData)];
     UIBarButtonItem *insertItem = [[UIBarButtonItem alloc] initWithTitle:@"insert" style:UIBarButtonItemStyleDone target:self action:@selector(insert:)];
     UIBarButtonItem *quaryItem = [[UIBarButtonItem alloc] initWithTitle:@"quary" style:UIBarButtonItemStyleDone target:self action:@selector(quaryData)];
     UIBarButtonItem *updateItem = [[UIBarButtonItem alloc] initWithTitle:@"update" style:UIBarButtonItemStyleDone target:self action:@selector(updateData)];
     self.navigationItem.rightBarButtonItems = @[deleteItem, insertItem, quaryItem, updateItem];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MyStudent"];
+    NSSortDescriptor *heightSort = [NSSortDescriptor sortDescriptorWithKey:@"age" ascending:YES];
+    request.sortDescriptors = @[heightSort];
+    NSError *resultError = nil;
+    fetchResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:context sectionNameKeyPath:@"class_id" cacheName:nil];
+    fetchResultsController.delegate = self;
+    [fetchResultsController performFetch:&resultError];
 
 }
 
@@ -63,6 +76,7 @@ static NSManagedObjectContext *context = nil;
         student.age = age;
         student.class_id = 1;
         student.grade = class;
+        student.card = @"student";
     }
     
     NSError *eror = nil;
@@ -88,7 +102,7 @@ static NSManagedObjectContext *context = nil;
     }
     // 遍历数据
     for (MyStudent *obj in objs) {
-        NSLog(@"name = %@, age = %d", obj.name, obj.age);
+        NSLog(@"name = %@, age = %d, class_id = %d, card = %@", obj.name, obj.age, obj.class_id, obj.card);
     }
 }
 
@@ -131,6 +145,34 @@ static NSManagedObjectContext *context = nil;
     } else {
         NSLog(@"保存失败：%@", error);
     }
+    
+}
+
+#pragma mark - <NSFetchedResultsControllerDelegate>
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(nullable NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(nullable NSIndexPath *)newIndexPath {
+    NSLog(@"----->");
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type {
+    NSLog(@"====>");
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    NSLog(@"begin");
+}
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    for (int i = 0; i < controller.sections[0].numberOfObjects; i++) {
+        MyStudent *student = [controller objectAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
+        NSLog(@"age = %d", student.age);
+    }
+    NSLog(@"end");
+}
+
+- (NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName {
+    NSLog(@"title");
+    return @"2";
 }
 
 @end
