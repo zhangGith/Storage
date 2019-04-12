@@ -43,7 +43,7 @@ static NSFetchedResultsController *fetchResultsController = nil;
     if (store == nil) {
         [NSException raise:@"添加数据库错误" format:@"%@", error.localizedDescription];
     }
-   
+
     context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
     context.persistentStoreCoordinator = psc;
     
